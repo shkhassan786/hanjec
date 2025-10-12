@@ -1,222 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HANJEC.COM</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HANJEC</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
 </head>
 <body>
-    <header>
-        <div class="navbar">
-            <div class="nav-logo border">
-                <div class="logo"></div>
-            </div>
-            <div class="nav-location border">
-                <p class="location-label">Deliver to</p>
-                <div class="add-icon">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <p class="location"><b>india</b></p>
-                </div>
-            </div>
-            <div class="nav-search border">
-                <select class="search-select">
-                    <option>ALL</option>
-                </select>
-                <input class="search-input" placeholder="Search Hanjec">
-                <div class="search-icon">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-            </div>
-            <div class="nav-language border">
-                <div id="google_translate_element"></div>
-            </div>
-
-
-            <div class="nav-signin border">
-                <p><span>Hello, sign in</span></p>
-                <p class="nav-second">Account & Lists</p>
-            </div>
-            <div class="nav-returns border">
-                <p><span>Returns</span></p>
-                <p class="nav-second">& Orders</p>
-            </div>
-            <div class="nav-cart border">
-                <i class="fa-solid fa-cart-shopping cart-icon"></i>
-                cart
-            </div>
-        </div>
-        <div class="panel">
-            <div class="panel-all">
-                <i class="fa-solid fa-bars"></i>
-                All
-            </div>
-            <div class="panel-options">
-                <p>Today's Deals</p>
-                <p>Customer Service</p>
-                <p>Gift Cards</p>
-                <p>Registry</p>
-                <p>Sell</p>
-            </div>
-            <div class="supplier border">
-                <a href="#">Become a Supplier</a>
-            </div>
-            <div class="panel-deals border">
-                <p>Shop deals in Electronics</p>
-            </div>
-        </div>
-    </header>
-    <div class="hero-section">
-        <div class="hero-msg ">
-            <p>Get 50% off on selected items on your first order | Use code: HANJEC NO.1 , and get free delivery. <a class="border" href="#">click here to shop now</a></p>
-        </div>
+<header>
+  <div class="navbar">
+    <div class="logo">HANJEC</div>
+    <div class="nav-search">
+      <input placeholder="Search products...">
+      <button>Search</button>
     </div>
-    <div class="shop-section">
-        <div class="box1 box">
-            <div class="box-content">
-                <h2>Health & Care</h2>
-                <div class="box-img" style="background-image: url('img1.jpg');"></div>
-                <p>see more</p>
-            </div>
-        </div>
-        <div class="box2 box">
-            <div class="box-content">
-                <h2>Electronics & Accessories</h2>
-            <div class="box-img" style="background-image: url('img2.jpg');"></div>
-            <p>see more</p>
-            </div>
-        </div>
-        <div class="box3 box">
-            <div class="box-content">
-                <h2>Up to 50% off | Mens wear</h2>
-                <div class="box-img" style="background-image: url('img3.jpg');"></div>
-                <p>see more</p>
-            </div>
-        </div>
-        <div class="box4 box">
-            <div class="box-content">
-                <h2>Up to 60% off | Lady wear</h2>
-                <div class="box-img" style="background-image: url('img4.jpg');"></div>
-                <p>see more</p>
-            </div>
-        </div>
-        <div class="box5 box">
-            <div class="box-content">
-                <h2>Up to 35% off | Baby wear</h2>
-                <div class="box-img" style="background-image: url('img5.png');"></div>
-                <p>see more</p>
-            </div>
-        </div>
-        <div class="box6 box">
-            <div class="box-content">
-                <h2>Up to 30% off | Kids wear</h2>
-                <div class="box-img" style="background-image: url('img6.png');"></div>
-                <p>see more</p>
-            </div>
-        </div>
-        <div class="box7 box">
-            <div class="box-content">
-                <h2>Mobile & Accessories</h2>
-                <div class="box-img" style="background-image: url('img7.jpg');"></div>
-                <p>see more</p>
-            </div>
-        </div>
-        <div class="box8 box">
-            <div class="box-content">
-                <h2>Toys for kids</h2>
-                <div class="box-img" style="background-image: url('img8.jpg');"></div>
-                <p>see more</p>
-            </div>
-        </div>
+    <div class="nav-language border">
+      <div id="google_translate_element"></div>
     </div>
-    <div class="sign-panel">
-        <div class="sign-content">
-            <h2 class="panel-text">See personalized recommendations</h2>
-            <button class="btn border">Sign in</button>
-            <p class="panel-text2">New customer? <a href="#">Start here.</a></p>
-        </div>
+    <div class="nav-login">
+      <button id="login-btn">Login</button>
     </div>
-
-    <footer>
-        <div class="footer-top">
-            <a href="#">Back to top</a>
-        </div>
-
-
-    <div class="footer-panel">
-        <div class="footer1 footer">
-            <p>Get to Know Us</p>
-            <ul>
-                <a href="#">About Hanjec</a>
-                <a href="#">Careers</a>
-                <a href="#">Press Releases</a>
-                <a href="#">Hanjec Science</a>
-            </ul>
-        </div>
-
-        <div class="footer2 footer">
-            <p>Connect with Us</p>
-            <ul>
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">Instagram</a>
-            </ul>
-        </div>
-        
-        <div class="footer3 footer">
-            <p>Make Money with Us</p>
-            <ul>
-                <a href="#">Sell on Hanjec</a>
-                <a href="#">Sell under Hanjec Accelerator</a>
-                <a href="#">Hanjec Global Selling</a>
-                <a href="#">Become an Affiliate</a>
-                <a href="#">Fulfilment by Hanjec</a>
-                <a href="#">Advertise Your Products</a>
-            </ul>
-        </div>
-
-        <div class="footer4 footer">
-            <p>Let Us Help You</p>
-            <ul>
-                <a href="#">supportHanjec</a>
-                <a href="#">Your Account</a>
-                <a href="#">Returns Centre</a>
-                <a href="#">100% Purchase Protection</a>
-                <a href="#">Hanjec App Download</a>
-                <a href="#">Help</a>
-            </ul>
-        </div>
-
+    <div class="nav-cart">
+      <button id="cart-btn">Cart (0)</button>
     </div>
-        <div class="footer-section links">
-            <h2>Quick Links</h2>
-                <a href="#">Home</a>
-                <a href="#">Shop</a>
-                <a href="#">Deals</a>
-                <a href="#">Contact Us</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-        </div>
+  </div>
+</header>
 
+<section class="hero-section">
+  <img src="hero.png" alt="Hero Image">
+  <div class="hero-msg">
+    <p>Get 50% off on first order! <a href="#">Shop Now</a></p>
+  </div>
+</section>
 
+<section class="products">
+  <div class="product-card">
+    <img src="product1.png" alt="">
+    <h3>Product 1</h3>
+    <p>$100</p>
+    <button>Add to Cart</button>
+  </div>
+  <div class="product-card">
+    <img src="product2.jpg" alt="">
+    <h3>Product 2</h3>
+    <p>$120</p>
+    <button>Add to Cart</button>
+  </div>
+  <!-- Add more products -->
+</section>
 
-        <div class="footer-content">
-            <div class="footer-section about">
-                <h4>About HANJEC</h4>
-                <p>HANJEC is a leading e-commerce platform that offers a wide range of products, from electronics to fashion, catering to millions of customers worldwide. Our mission is to provide a seamless shopping experience with exceptional customer service.</p>
-            </div>
-            <div class="footer-section contact">
-                <h4>Contact Us</h4>
-                <p>Email: support@hanjec.com</p>
-                <p>Phone: +91-6206423920</p>
-            </div>
-        </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 HANJEC. All rights reserved.</p>
-            </div>
-    </footer>
+<footer>
+  <p>&copy; 2025 HANJEC. All rights reserved.</p>
+</footer>
 
+<script src="script.js" type="module"></script>
 <script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
