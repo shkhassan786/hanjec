@@ -245,6 +245,74 @@ function changeLanguage(lang) {
     alert("Language switched to: " + lang.toUpperCase());
 }
 </script>
+<script>
+// Sample translations
+const translations = {
+    en: {
+        welcome: "Welcome to HANJEC",
+        offer: "Get 50% off on selected items on your first order | Use code: HANJEC NO.1, and get free delivery.",
+        health: "Health & Care",
+        electronics: "Electronics & Accessories",
+        mens: "Up to 50% off | Mens wear",
+        lady: "Up to 60% off | Lady wear",
+        baby: "Up to 35% off | Baby wear",
+        kids: "Up to 30% off | Kids wear",
+        mobile: "Mobile & Accessories",
+        toys: "Toys for kids",
+        personalized: "See personalized recommendations",
+        signin: "Sign in",
+        newcustomer: "New customer? Start here."
+    },
+    hi: {
+        welcome: "HANJEC में आपका स्वागत है",
+        offer: "पहले ऑर्डर पर चयनित वस्तुओं पर 50% की छूट | कोड: HANJEC NO.1 का उपयोग करें और मुफ्त डिलीवरी पाएं।",
+        health: "स्वास्थ्य और देखभाल",
+        electronics: "इलेक्ट्रॉनिक्स और सहायक उपकरण",
+        mens: "50% तक छूट | पुरुषों के वस्त्र",
+        lady: "60% तक छूट | महिलाओं के वस्त्र",
+        baby: "35% तक छूट | बच्चों के वस्त्र",
+        kids: "30% तक छूट | बच्चों के वस्त्र",
+        mobile: "मोबाइल और सहायक उपकरण",
+        toys: "बच्चों के लिए खिलौने",
+        personalized: "व्यक्तिगत सिफारिशें देखें",
+        signin: "साइन इन करें",
+        newcustomer: "नया ग्राहक? यहाँ शुरू करें।"
+    }
+    // Add more languages like 'es', 'fr' here
+};
+
+// Toggle dropdown
+function toggleDropdown() {
+    const dropdown = document.querySelector('.language-dropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+
+// Close dropdown if clicking outside
+window.onclick = function(event) {
+    if (!event.target.closest('.nav-language')) {
+        document.querySelector('.language-dropdown').style.display = 'none';
+    }
+}
+
+// Change language dynamically
+function changeLanguage(lang) {
+    document.getElementById('current-lang').innerText = lang.toUpperCase();
+
+    // Update all page texts
+    document.querySelector('.hero-msg p').innerHTML = translations[lang].offer + ' <a class="border" href="#">click here to shop now</a>';
+    document.querySelector('.box1 h2').innerText = translations[lang].health;
+    document.querySelector('.box2 h2').innerText = translations[lang].electronics;
+    document.querySelector('.box3 h2').innerText = translations[lang].mens;
+    document.querySelector('.box4 h2').innerText = translations[lang].lady;
+    document.querySelector('.box5 h2').innerText = translations[lang].baby;
+    document.querySelector('.box6 h2').innerText = translations[lang].kids;
+    document.querySelector('.box7 h2').innerText = translations[lang].mobile;
+    document.querySelector('.box8 h2').innerText = translations[lang].toys;
+    document.querySelector('.sign-panel h2').innerText = translations[lang].personalized;
+    document.querySelector('.sign-panel .btn').innerText = translations[lang].signin;
+    document.querySelector('.sign-panel .panel-text2').innerHTML = translations[lang].newcustomer + ' <a href="#">Start here.</a>';
+}
+</script>
 
 </body>
 </html>
