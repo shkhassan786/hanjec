@@ -297,3 +297,33 @@ ul a{
     margin-right: 100px;
 }
 
+.nav-language {
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-language p {
+    margin: 0;
+    font-weight: 600;
+}
+/* Style Google Translate dropdown */
+#google_translate_element {
+    font-size: 1rem;
+}
+
+.goog-te-gadget-simple {
+    background-color: #f2f7df !important;
+    border: none !important;
+    font-size: 1rem !important;
+}
+
+.goog-te-gadget-simple a {
+    color: black !important;
+    text-decoration: none !important;
+}
+
+.goog-te-gadget-simple select {
+    background-color: #f2f7df !important;
+    border: none !important;
+    font-size: 1rem !important;
+}
