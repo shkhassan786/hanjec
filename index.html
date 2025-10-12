@@ -29,10 +29,18 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>
-            <div class="nav-language border">
-                <p>EN</p>
-                <select><i class="fa-solid fa-caret-down"></i></select>
+            <div class="nav-language border" onclick="toggleDropdown()">
+                <p id="current-lang">EN <i class="fa-solid fa-caret-down"></i></p>
+                    <div class="language-dropdown">
+                        <ul>
+                            <li onclick="changeLanguage('en')">English</li>
+                            <li onclick="changeLanguage('hi')">हिंदी</li>
+                            <li onclick="changeLanguage('es')">Español</li>
+                            <li onclick="changeLanguage('fr')">Français</li>
+                        </ul>
+                    </div>
             </div>
+
             <div class="nav-signin border">
                 <p><span>Hello, sign in</span></p>
                 <p class="nav-second">Account & Lists</p>
@@ -215,5 +223,28 @@
                 <p>&copy; 2025 HANJEC. All rights reserved.</p>
             </div>
     </footer>
+
+    <script>
+function toggleDropdown() {
+    const dropdown = document.querySelector('.language-dropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+
+// Close dropdown when clicking outside
+window.onclick = function(event) {
+    const dropdown = document.querySelector('.language-dropdown');
+    if (!event.target.closest('.nav-language')) {
+        dropdown.style.display = 'none';
+    }
+}
+
+// Change language function (example)
+function changeLanguage(lang) {
+    document.getElementById('current-lang').innerText = lang.toUpperCase();
+    // Add your translation logic here
+    alert("Language switched to: " + lang.toUpperCase());
+}
+</script>
+
 </body>
 </html>
