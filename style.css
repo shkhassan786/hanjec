@@ -160,31 +160,6 @@
     border-radius: 2px;
 
 }
-.moving-3d {
-  overflow: hidden;
-  white-space: nowrap;
-  height: 60px;
-}
-
-.moving-3d p {
-  display: inline-block;
-  font-size: 55px;
-  animation: move3D 6s linear infinite alternate;
-  transform-style: preserve-3d;
-}
-
-@keyframes move3D {
-  0% {
-    transform: translateX(-200px) rotateY(45deg);
-  }
-  50% {
-    transform: translateX(200px) rotateY(-45deg);
-  }
-  100% {
-    transform: translateX(-200px) rotateY(45deg);
-  }
-}
-
 .hero-msg a{
     color: #007185;
     text-decoration: none;
@@ -331,8 +306,7 @@ ul a{
     margin: 0;
     font-weight: 600;
 }
-
-/* Google Translate Styling 
+/* Style Google Translate dropdown */
 #google_translate_element {
     font-size: 1rem;
 }
@@ -352,4 +326,4 @@ ul a{
     background-color: #f2f7df !important;
     border: none !important;
     font-size: 1rem !important;
-}*/
+}
