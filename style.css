@@ -138,6 +138,15 @@
     color: rgb(0, 0, 0);
     font-weight: 900;
 }
+
+.launch-date{
+    background-color: rgb(255, 204, 0);
+    color: black;
+    text-align: center;
+    padding: 8px;
+    font-size: 3rem;
+    font-weight: 600;
+}
 /** hero section **/
 .hero-section{
     background-image: url(hanjec_herosections1.png);
