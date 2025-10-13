@@ -30,15 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.warn('lang-shortcuts container not found.');
     return;
   }
-
-  const languages = [
-    { code: 'en', label: '-en' },
-    { code: 'hi', label: 'अ' },
-    { code: 'es', label: 'ES' },
-    { code: 'fr', label: 'FR' },
-    { code: 'de', label: 'DE' }
-  ];
-
+  
   function setCookie(name, value) {
     const expires = 'expires=Fri, 31 Dec 9999 23:59:59 GMT';
     const cookieSecure = `${name}=${value};${expires};path=/;SameSite=None; Secure`;
