@@ -31,31 +31,58 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  const languages = [
+    { code: 'en', label: '-en' },
+    { code: 'hi', label: 'अ' },
+    { code: 'es', label: 'ES' },
+    { code: 'fr', label: 'FR' },
+    { code: 'de', label: 'DE' }
+  ];
+
   function setCookie(name, value) {
     const expires = 'expires=Fri, 31 Dec 9999 23:59:59 GMT';
+    const cookieSecure = `${name}=${value};${expires};path=/;SameSite=None; Secure`;
     try {
-      document.cookie = `${name}=${value};${expires};path=/`;
+      // set for current host
+      document.cookie = cookieSecure;
+      // also try root domain
       const domain = '.' + location.hostname.replace(/^www\./, '');
-      document.cookie = `${name}=${value};${expires};path=/;domain=${domain}`;
+      document.cookie = `${name}=${value};${expires};path=/;domain=${domain};SameSite=None; Secure`;
     } catch (e) {
-      console.warn('Could not set cookie for domain root.', e);
+      console.warn('cookie set failed with Secure flags, falling back', e);
+      // best-effort fallback
+      document.cookie = `${name}=${value};${expires};path=/`;
     }
   }
 
-  function translateTo(lang) {
-    // set googtrans cookie the Google widget reads on load
-    setCookie('googtrans', `/auto/${lang}`);
-    setCookie('googtrans', `/auto/${lang}`); // duplicate for compatibility
+  function clearGoogtransCookies() {
+    try {
+      const domain = '.' + location.hostname.replace(/^www\./, '');
+      document.cookie = 'googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+      document.cookie = 'googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=' + domain;
+    } catch (e) { /* ignore */ }
+  }
 
-    setTimeout(() => {
-      // if the widget exists and rendered, reload to let it apply translation
-      if (googleEl && googleEl.children.length > 0) {
-        location.reload();
-      } else {
-        // fallback: open Google Translate preview in new tab
-        const url = 'https://translate.google.com/translate?sl=auto&tl=' + encodeURIComponent(lang) + '&u=' + encodeURIComponent(location.href);
-        window.open(url, '_blank', 'noopener');
+  function translateTo(lang) {
+    // save preference for future visits and set cookie now
+    localStorage.setItem('googpref', lang);
+    setCookie('googtrans', `/auto/${lang}`);
+
+    // try to drive the widget without reload
+    const combo = document.querySelector('.goog-te-combo');
+    if (combo) {
+      try {
+        combo.value = lang;
+        combo.dispatchEvent(new Event('change', { bubbles: true }));
+        return;
+      } catch (e) {
+        console.warn('Could not programmatically change goog-te-combo, will reload.', e);
       }
+    }
+
+    // fallback: reload so the widget picks up cookie on next load
+    setTimeout(() => {
+      location.reload();
     }, 150);
   }
 

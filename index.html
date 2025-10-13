@@ -242,17 +242,26 @@
                 <p>&copy; 2025 HANJEC. All rights reserved.</p>
             </div>
 
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'en',
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-  }, 'google_translate_element');
-}
+<script>
+  (function(){
+    const pref = localStorage.getItem('googpref');
+    if (!pref) return;
+    const expires = 'expires=Fri, 31 Dec 9999 23:59:59 GMT';
+    const baseCookie = 'googtrans=/auto/' + pref + ';' + expires + ';path=/;SameSite=None; Secure';
+    try {
+      // set for current host
+      document.cookie = baseCookie;
+      // also set for root domain (helps some hosts)
+      const domain = '.' + location.hostname.replace(/^www\./, '');
+      document.cookie = 'googtrans=/auto/' + pref + ';' + expires + ';path=/;domain=' + domain + ';SameSite=None; Secure';
+    } catch (e) {
+      // fallback: best-effort without Secure flags
+      document.cookie = 'googtrans=/auto/' + pref + ';' + expires + ';path=/';
+    }
+  })();
 </script>
-<script type="text/javascript" 
-  src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-</script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script src="script.js"></script>
 </body>
-</html> 
+</html>
