@@ -30,8 +30,9 @@
                 </div>
             </div>
             <div class="nav-language border">
-                <div class="lang-shortcuts" aria-label="Language shortcuts"></div>
-                <div id="google_translate_element"></div>
+-                <div class="lang-shortcuts" aria-label="Language shortcuts"></div>
++                <select class="lang-select" aria-label="Language select"></select>
+                 <div id="google_translate_element"></div>
             </div>
 
             <div class="nav-signin border">
@@ -241,6 +242,15 @@
        <div class="footer-bottom">
                 <p>&copy; 2025 HANJEC. All rights reserved.</p>
             </div>
+
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
 
 <script>
   (function(){

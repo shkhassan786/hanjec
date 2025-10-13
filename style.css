@@ -450,6 +450,47 @@ ul a{
     font-weight: 600;
 }
 
+/* show only multilingual section on the page */
+body > * { display: none !important; }
+.nav-language,
+.nav-language * {
+  display: inline-flex !important;
+  visibility: visible !important;
+  position: relative !important;
+}
+
+/* center the multilingual UI full-screen */
+.nav-language {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: #f2f7df;
+  margin: 0 auto;
+}
+
+/* select dropdown style */
+.lang-select {
+  appearance: menulist !important;
+  -webkit-appearance: menulist !important;
+  font-size: 1.1rem;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: #fff;
+  color: #111;
+  min-width: 120px;
+  box-shadow: 0 6px 18px rgba(15,62,25,0.06);
+}
+.lang-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(15,62,25,0.08);
+}
+
+/* keep google element available but visually minimal/offscreen */
+#google_translate_element { position: absolute; left: -9999px; top: auto; }
+/* ...existing code... */
 
 /* resposive */
 @media (max-width: 768px) {

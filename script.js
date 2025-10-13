@@ -25,12 +25,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- custom shortcuts UI (now runs after DOM is ready) ---
-  const shortcutsContainer = document.querySelector('.lang-shortcuts');
-  if (!shortcutsContainer) {
-    console.warn('lang-shortcuts container not found.');
+  const langSelect = document.querySelector('.lang-select');
+  if (!langSelect) {
+    console.warn('lang-select element not found.');
     return;
   }
-  
+
+  // add languages mapping (code -> short label)
+  const languages = [
+    { code: 'en', label: 'EN' },
+    { code: 'hi', label: 'अ' },
+    { code: 'es', label: 'ES' },
+    { code: 'fr', label: 'FR' },
+    { code: 'de', label: 'DE' }
+  ];
+
+  // populate select options
+  languages.forEach(lang => {
+    const opt = document.createElement('option');
+    opt.value = lang.code;
+    opt.textContent = lang.label;
+    langSelect.appendChild(opt);
+  });
+
+  // set initial value from saved preference if present
+  const saved = localStorage.getItem('googpref');
+  if (saved) {
+    try { langSelect.value = saved; } catch (e) { /* ignore */ }
+  }
+
+  // change handler: set cookie and trigger translation
+  langSelect.addEventListener('change', () => {
+    translateTo(langSelect.value);
+  });
+
   function setCookie(name, value) {
     const expires = 'expires=Fri, 31 Dec 9999 23:59:59 GMT';
     const cookieSecure = `${name}=${value};${expires};path=/;SameSite=None; Secure`;
@@ -77,15 +105,4 @@ document.addEventListener('DOMContentLoaded', () => {
       location.reload();
     }, 150);
   }
-
-  // build buttons
-  languages.forEach(lang => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'lang-btn';
-    btn.title = lang.code;
-    btn.textContent = lang.label;
-    btn.addEventListener('click', () => translateTo(lang.code));
-    shortcutsContainer.appendChild(btn);
-  });
 });
