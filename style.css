@@ -138,6 +138,63 @@
     color: rgb(0, 0, 0);
     font-weight: 900;
 }
+
+.moving-3d {
+  overflow: hidden;
+  white-space: nowrap;
+  height: 60px;
+  background-color: #f2f7df;
+}
+
+.moving-3d p {
+  display: inline-block;
+  font-size: 45px;
+  animation: move3D 15s linear infinite alternate;
+  transform-style: preserve-3d;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes move3D {
+  0% {
+    transform: translateX(-100%) rotateY(45deg);
+  }
+  50% {
+    transform: translateX(100%) rotateY(-45deg);
+  }
+  100% {
+    transform: translateX(-100%) rotateY(45deg);
+  }
+}
+
+/** SLIDING PRODUCT **/
+.scroll-wrapper {
+  overflow: hidden;
+  width: 100%;
+  background: #f2f7df;
+  border: 1px solid #ccc;
+}
+
+.scroll-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 20s linear infinite;
+}
+
+.item {
+  min-width: 200px;
+  padding: 20px;
+  margin: 10px;
+  background: #f0f0f0;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 8px;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /** hero section **/
 .hero-section{
     background-image: url(hanjec_herosections1.png);
@@ -158,8 +215,8 @@
     font-size: 1.3rem;
     margin-bottom: 25px;
     border-radius: 2px;
-
 }
+
 .hero-msg a{
     color: #007185;
     text-decoration: none;
