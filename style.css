@@ -120,6 +120,28 @@
     align-items: center;
     justify-content: space-evenly;
 }
+.panel p{
+  display: inline-block; 
+  padding: 5px;
+  transition: background-color 0.3s ease;
+}
+.panel a{
+  display: inline-block; 
+  padding: 5px;
+  transition: background-color 0.3s ease;
+}
+.panel p:hover{
+  color: white;
+  background-color: rgb(7, 42, 6);
+  border-radius: 2px;
+  border: 1px solid black;
+}
+.panel a:hover {
+  color: white;
+  background-color: rgb(7, 42, 6);
+  border-radius: 2px;
+  border: 1px solid black;
+}
 .panel-options p {
     display: inline;
     margin-left: 12px;
@@ -128,6 +150,31 @@
     width: 60%;
     font-size: 1rem;
 }
+.menu-options {
+  display: none;
+  position: absolute;
+  top: 50px; /* Adjust based on your panel height */
+  left: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  padding: 10px;
+  border-radius: 6px;
+  z-index: 1000;
+}
+
+.menu-options a {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.menu-options a:hover {
+  background-color: rgb(15, 186, 12);
+  color: white;
+}
 .panel-deals{
     font-size: 1.2rem;
     font-weight: 600;
@@ -135,7 +182,6 @@
 .supplier a{
     text-decoration: none;
     font-size: 1.1rem;
-    color: rgb(0, 0, 0);
     font-weight: 900;
 }
 
