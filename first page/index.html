@@ -6,6 +6,7 @@
     <title>HANJEC.COM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
@@ -35,8 +36,8 @@
 
 
             <div class="nav-signin border">
-                <p><span>Hello, sign in</span></p>
-                <p class="nav-second">Account & Lists</p>
+                <a href="signin & register/sign.html"><span>Hello, sign in</span></a>
+                <a class="nav-second" href="#"> Account & Lists</a>
             </div>
             <div class="nav-returns border">
                 <p><span>Returns</span></p>
@@ -48,15 +49,26 @@
             </div>
         </div>
         <div class="panel">
-            <div class="panel-all" onclick="toggleMenu()">
+            <div class="panel-all border" onclick='toggleMenu()'>
             <i class="fa-solid fa-bars"></i> All
         </div>
 
-            <div id="menu-options" class="menu-options">
-                <a href="#">Home</a>
-                <a href="#">Products</a>
-                <a href="#">Contact</a>
-                <a href="#">About Us</a>
+            <div id="menu-options" class="menu-options"  style="position: relative;">
+               <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Deals</a></li>
+                <li><a href="#">Gift Ideas</a></li>
+                <li><a href="#">New Releases</a></li>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Feedback</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">More</a></li>
+               </ul> 
             </div>
 
             <div class="panel-options">
@@ -66,7 +78,7 @@
                 <p>Registry</p>
                 <p>Sell</p>
             </div>
-            <div class="supplier border">
+            <div id=supplier class="supplier border">
                 <a href="#">Become a Supplier</a>
             </div>
             <div class="panel-deals border">
@@ -143,8 +155,8 @@
     <div class="sign-panel">
         <div class="sign-content">
             <h2 class="panel-text">See personalized recommendations</h2>
-            <button class="btn border">Sign in</button>
-            <p class="panel-text2">New customer? <a href="#">Start here.</a></p>
+            <a href="signin & register/sign.html"><button class="btn border">Sign in</button></a>
+            <p class="panel-text2">New customer? <a href="signin & register/sign.html">Start here.</a></p>
         </div>
     </div>
 
@@ -238,6 +250,13 @@ function googleTranslateElementInit() {
 <script type="text/javascript" 
   src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
 </script>
+ <script>
+    function toggleMenu() {
+      const menu = document.getElementById("menu-options");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>
