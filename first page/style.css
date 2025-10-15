@@ -181,7 +181,7 @@
 }
 
 .launch-date{
-    background-color: rgb(255, 204, 0);
+    background: linear-gradient(#ff9a9e, #fad0c4);
     color: black;
     text-align: center;
     padding: 8px;
