@@ -1,0 +1,121 @@
+/* Reset / base */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(180deg,#f7fbf0 0%,#eef6e8 100%);
+  color: #102a12;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding: 24px;
+}
+
+/* Page container */
+h1 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 18px;
+  font-weight: 700;
+  color: #0f3e19;
+}
+
+/* Form wrapper */
+form#supplier-form {
+  max-width: 920px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(15,62,25,0.06);
+  border: 1px solid rgba(15,62,25,0.06);
+}
+
+/* Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.input-box { display:flex; flex-direction:column; gap:8px; }
+.input-box.full { grid-column: 1 / -1; }
+.input-box span { font-weight:600; color:#143a16; }
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(15,62,25,0.12);
+  background: #fff;
+  font-size: 0.98rem;
+  color: #102a12;
+  transition: box-shadow .12s ease, transform .08s ease, border-color .12s ease;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: rgba(15,62,25,0.28);
+  box-shadow: 0 6px 18px rgba(15,62,25,0.06);
+  transform: translateY(-1px);
+}
+
+/* Buttons */
+button {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: #2d6b2d;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .08s ease, opacity .08s;
+}
+button:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(15,62,25,0.12); }
+button[disabled] { background: #9bb091; cursor: not-allowed; opacity: .7; transform: none; box-shadow: none; }
+
+/* Mobile row */
+.mobile-row, .doc-row { display:flex; gap:8px; align-items:center; }
+.mobile-row input, .doc-row input { flex:1; }
+
+/* OTP */
+#otp-section-primary, #otp-section-aadhaar, #otp-section-pan { display:block; grid-column:1 / -1; margin-top:6px; }
+#otp-status-primary, #otp-status-aadhaar, #otp-status-pan { margin-top:8px; color:#2d6b2d; font-weight:600; }
+#recaptcha-container-primary, #recaptcha-container-aadhaar, #recaptcha-container-pan { margin-top:6px; }
+
+/* Authorize box */
+.authorize {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 10px;
+  background: linear-gradient(180deg,#fbfff9,#f6fbf1);
+  border: 1px solid rgba(15,62,25,0.06);
+}
+.authorize-row { display:flex; gap:10px; align-items:center; font-weight:600; }
+.authorize-row input[type="checkbox"] { width:18px; height:18px; accent-color:#2d6b2d; }
+.authorize-file input[type="file"] { padding:8px; border-radius:8px; border:1px dashed rgba(15,62,25,0.08); background:#fff; }
+
+/* Registration */
+.registration { grid-column: 1 / -1; display:flex; justify-content:flex-end; gap:10px; margin-top:8px; }
+
+/* State/district row */
+.state-district-row { display:flex; gap:8px; }
+.state-district-row select { flex:1; }
+
+/* Responsive */
+@media (max-width:880px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .registration { justify-content:center; }
+  form#supplier-form { padding: 16px; }
+}
+
+/* Helper */
+.helper { font-size:0.92rem; color:#345a32; }

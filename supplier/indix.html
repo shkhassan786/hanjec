@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SUPPLIER REGISTRATION - HANJEC</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="indix.css" />
+</head>
+<body>
+  <main>
+    <h1>Become A Supplier For Hanjec</h1>
+
+    <form id="supplier-form" action="/supplier/register" method="post" enctype="multipart/form-data" novalidate>
+      <div class="form-grid">
+
+        <label class="input-box full">
+          <span>Email</span>
+          <input type="email" name="email" placeholder="you@example.com" required>
+        </label>
+
+        <label class="input-box">
+          <span>Password</span>
+          <input type="password" name="password" placeholder="Create a strong password" required>
+        </label>
+
+        <label class="input-box">
+          <span>Shop Name</span>
+          <input type="text" name="shop_name" placeholder="Shop name" required>
+        </label>
+
+        <label class="input-box">
+          <span>Shop Category</span>
+          <select name="shop_category" required>
+            <option value="">Select category</option>
+            <option>Beauty and personal Care</option>
+            <option>Electronics</option>
+            <option>Beverages</option>
+            <option>Fashion and apparel</option>
+            <option>Furniture</option>
+            <option>Food</option>
+            <option>Toys and hobbies</option>
+            <option>DIY and hardware</option>
+            <option>Household essentials</option>
+            <option>Media</option>
+            <option>Personalize the shopping experience</option>
+            <option>Pet Supplies</option>
+            <option>Apparel and accessories</option>
+            <option>Sporting Goods</option>
+            <option>Appliances</option>
+            <option>Home and kitchen</option>
+            <option>Jewelry</option>
+            <option>Makeup</option>
+            <option>Nutrition Facts</option>
+            <option>Arts and Crafts</option>
+            <option>Auto and parts</option>
+            <option>Baby</option>
+            <option>Baby bottles</option>
+            <option>Health and wellness</option>
+            <option>Cosmetics</option>
+            <option>Fashion & Stylish</option>
+            <option>Health & Skin Care</option>
+            <option>Men's Wear</option>
+            <option>Ladies Wear</option>
+            <option>Kids' Wear</option>
+            <option>Medicines</option>
+          </select>
+        </label>
+
+        <!-- Primary Mobile + OTP (site contact) -->
+        <div class="input-box full mobile-block">
+          <label>
+            <span>Primary mobile number (with country code)</span>
+            <div class="mobile-row">
+              <input type="tel" id="mobile-input" name="mobile" placeholder="+911234567890" required>
+              <button type="button" id="send-otp-btn">Send OTP</button>
+            </div>
+            <div id="recaptcha-container-primary" aria-hidden="true"></div>
+          </label>
+        </div>
+
+        <div id="otp-section-primary" class="input-box full" style="display:none;">
+          <label>
+            <span>Enter Primary OTP</span>
+            <div class="mobile-row">
+              <input type="text" id="otp-input-primary" inputmode="numeric" pattern="[0-9]*" placeholder="123456">
+              <button type="button" id="verify-otp-btn-primary">Verify OTP</button>
+            </div>
+          </label>
+          <p id="otp-status-primary" class="helper" aria-live="polite"></p>
+        </div>
+
+        <input type="hidden" id="verified-phone" name="verified_phone" value="">
+
+        <!-- Aadhaar number + mobile + OTP + upload -->
+        <div class="input-box full doc-block">
+          <span>Aadhaar details</span>
+          <div class="doc-row">
+            <input type="text" id="aadhaar-number" name="aadhaar_number" placeholder="Aadhaar number (12 digits)" maxlength="12" pattern="\d{12}">
+            <input type="tel" id="aadhaar-mobile" name="aadhaar_mobile" placeholder="Mobile for Aadhaar OTP (+91...)" >
+            <button type="button" id="send-otp-btn-aadhaar">Send OTP</button>
+          </div>
+
+          <div id="otp-section-aadhaar" class="mobile-row" style="display:none; margin-top:8px;">
+            <input type="text" id="otp-input-aadhaar" placeholder="Enter Aadhaar OTP" inputmode="numeric" pattern="[0-9]*">
+            <button type="button" id="verify-otp-btn-aadhaar">Verify Aadhaar OTP</button>
+            <p id="otp-status-aadhaar" class="helper" aria-live="polite" style="margin-left:8px"></p>
+          </div>
+
+          <label class="authorize-file" style="margin-top:10px;">
+            <span>Upload Aadhaar (front/back) — enabled after Aadhaar OTP</span>
+            <input type="file" id="aadhaar-upload" name="aadhaar_file" accept=".jpg,.png,.pdf" disabled>
+          </label>
+
+          <div id="recaptcha-container-aadhaar" aria-hidden="true"></div>
+          <input type="hidden" id="aadhaar-verified" name="aadhaar_verified" value="0">
+        </div>
+
+        <!-- PAN number + mobile + OTP + upload -->
+        <div class="input-box full doc-block">
+          <span>PAN details</span>
+          <div class="doc-row">
+            <input type="text" id="pan-number" name="pan_number" placeholder="PAN number (e.g. ABCDE1234F)" maxlength="10" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}">
+            <input type="tel" id="pan-mobile" name="pan_mobile" placeholder="Mobile for PAN OTP (+91...)" >
+            <button type="button" id="send-otp-btn-pan">Send OTP</button>
+          </div>
+
+          <div id="otp-section-pan" class="mobile-row" style="display:none; margin-top:8px;">
+            <input type="text" id="otp-input-pan" placeholder="Enter PAN OTP" inputmode="numeric" pattern="[0-9]*">
+            <button type="button" id="verify-otp-btn-pan">Verify PAN OTP</button>
+            <p id="otp-status-pan" class="helper" aria-live="polite" style="margin-left:8px"></p>
+          </div>
+
+          <label class="authorize-file" style="margin-top:10px;">
+            <span>Upload PAN (scan) — enabled after PAN OTP</span>
+            <input type="file" id="pan-upload" name="pan_file" accept=".jpg,.png,.pdf" disabled>
+          </label>
+
+          <div id="recaptcha-container-pan" aria-hidden="true"></div>
+          <input type="hidden" id="pan-verified" name="pan_verified" value="0">
+        </div>
+
+        <!-- Address -->
+        <label class="input-box full address-block">
+          <span>Shop Address</span>
+          <input type="text" name="owner_name" placeholder="Owner full name">
+          <input type="text" name="shop_number" placeholder="Shop number / Flat no">
+          <input type="text" name="street" placeholder="Street name">
+          <input type="text" name="building" placeholder="Building / Apartment">
+          <input type="text" name="area" placeholder="Area / Locality">
+          <input type="text" name="city" placeholder="City">
+          <div class="state-district-row">
+            <select id="state-select" name="state" required>
+              <option value="">Select State / UT</option>
+            </select>
+            <select id="district-select" name="district" required disabled>
+              <option value="">Select District</option>
+            </select>
+          </div>
+          <input type="number" name="pin" placeholder="PIN code">
+        </label>
+
+        <!-- Authorize block -->
+        <div class="authorize full">
+          <label class="authorize-row">
+            <input type="checkbox" id="authorize-checkbox">
+            <span>I authorize Hanjec to verify my details and contact me regarding supplier registration.</span>
+          </label>
+        </div>
+
+        <div class="registration full">
+          <button id="register-btn" type="button" disabled>REGISTER</button>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <!-- Firebase SDK (compat) required for Phone Auth -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+  <script>
+    // Replace with your Firebase project config
+    const firebaseConfig = {
+      apiKey: "REPLACE_API_KEY",
+      authDomain: "REPLACE_PROJECT.firebaseapp.com",
+      projectId: "REPLACE_PROJECT",
+      appId: "REPLACE_APP_ID"
+    };
+    if (!window.firebase || !firebase.apps?.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+  </script>
+
+  <script src="indix.js" defer></script>
+</body>
+</html>
