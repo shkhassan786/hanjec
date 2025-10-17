@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Product Listing</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <section class="form-card">
+      <h1>AI Product Listing</h1>
+
+      <form id="productForm" enctype="multipart/form-data" class="form">
+        <label class="label">Upload Product Image</label>
+        <input type="file" id="productImage" name="image" accept="image/*" required class="input-file">
+
+        <fieldset class="options">
+          <legend>Use AI Suggestions</legend>
+          <label><input type="checkbox" id="useAiTitle" name="useAiTitle" checked> Title</label>
+          <label><input type="checkbox" id="useAiDesc" name="useAiDesc" checked> Description</label>
+          <label><input type="checkbox" id="useAiPrice" name="useAiPrice" checked> Price</label>
+          <label><input type="checkbox" id="useAiWarranty" name="useAiWarranty" checked> Warranty</label>
+          <label><input type="checkbox" id="useAiOffer" name="useAiOffer" checked> Offer</label>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit" id="submitBtn" class="btn primary">Generate Listing</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="aiResults" class="results-card" aria-live="polite"></section>
+  </main>
+
+  <script>
+  const form = document.getElementById('productForm');
+  const results = document.getElementById('aiResults');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    results.innerHTML = '';
+    form.classList.add('loading');
+    submitBtn.textContent = 'Generating...';
+    submitBtn.disabled = true;
+
+    const formData = new FormData(form);
+    const fileInput = document.getElementById('productImage');
+    if (fileInput.files[0]) formData.set('image', fileInput.files[0]);
+
+    try {
+      const res = await fetch('generate_ai_listing.php', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error('Server error: ' + res.status + ' — ' + text);
+      }
+
+      const result = await res.json();
+
+      if (result.error) {
+        results.innerHTML = `<div class="alert error"><strong>Error:</strong> ${result.error_message || result.error}</div>`;
+      } else {
+        results.innerHTML = `
+          <div class="result-grid">
+            <div class="result-image"><img src="${result.image_url}" alt="Uploaded product image"></div>
+            <div class="result-content">
+              <h2>${result.title || ''}</h2>
+              <p class="muted">${result.description || ''}</p>
+              <p class="meta"><strong>Price:</strong> ${result.price ? '₹' + result.price : '—'}</p>
+              <p class="meta"><strong>Warranty:</strong> ${result.warranty || '—'}</p>
+              <p class="meta"><strong>Offer:</strong> ${result.offer || '—'}</p>
+              <p class="small"><a href="${result.image_url}" target="_blank" rel="noopener">Open image</a></p>
+            </div>
+          </div>
+        `;
+      }
+    } catch (err) {
+      results.innerHTML = `<div class="alert error"><strong>Request failed:</strong> ${err.message}</div>`;
+    } finally {
+      form.classList.remove('loading');
+      submitBtn.textContent = 'Generate Listing';
+      submitBtn.disabled = false;
+    }
+  });
+  </script>
+</body>
+</html>
