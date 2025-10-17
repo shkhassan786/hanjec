@@ -8,85 +8,57 @@
 </head>
 <body>
   <main class="container">
-    <section class="form-card">
+    <div class="form-card">
       <h1>AI Product Listing</h1>
 
-      <form id="productForm" enctype="multipart/form-data" class="form">
-        <label class="label">Upload Product Image</label>
-        <input type="file" id="productImage" name="image" accept="image/*" required class="input-file">
+      <form id="ai-form" enctype="multipart/form-data" method="post">
+        <label class="label">Product image</label>
+        <input class="input-file" type="file" name="image" id="image" accept="image/*" required>
 
-        <fieldset class="options">
-          <legend>Use AI Suggestions</legend>
-          <label><input type="checkbox" id="useAiTitle" name="useAiTitle" checked> Title</label>
-          <label><input type="checkbox" id="useAiDesc" name="useAiDesc" checked> Description</label>
-          <label><input type="checkbox" id="useAiPrice" name="useAiPrice" checked> Price</label>
-          <label><input type="checkbox" id="useAiWarranty" name="useAiWarranty" checked> Warranty</label>
-          <label><input type="checkbox" id="useAiOffer" name="useAiOffer" checked> Offer</label>
-        </fieldset>
+        <label class="label">Optional title</label>
+        <input type="text" name="title" id="title" placeholder="Product title">
 
         <div class="actions">
-          <button type="submit" id="submitBtn" class="btn primary">Generate Listing</button>
+          <button class="btn" type="submit" id="generate-btn">Generate Listing</button>
+          <span id="status" class="helper"></span>
         </div>
       </form>
-    </section>
 
-    <section id="aiResults" class="results-card" aria-live="polite"></section>
+      <pre id="result" style="white-space:pre-wrap;margin-top:12px;"></pre>
+    </div>
   </main>
 
   <script>
-  const form = document.getElementById('productForm');
-  const results = document.getElementById('aiResults');
-  const submitBtn = document.getElementById('submitBtn');
+    const form = document.getElementById('ai-form');
+    const status = document.getElementById('status');
+    const result = document.getElementById('result');
 
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    results.innerHTML = '';
-    form.classList.add('loading');
-    submitBtn.textContent = 'Generating...';
-    submitBtn.disabled = true;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Uploading...';
+      result.textContent = '';
+      const fd = new FormData(form);
 
-    const formData = new FormData(form);
-    const fileInput = document.getElementById('productImage');
-    if (fileInput.files[0]) formData.set('image', fileInput.files[0]);
+      try {
+        const res = await fetch('./generate_ai_listing.php', {
+          method: 'POST',
+          body: fd
+          // IMPORTANT: do NOT set custom headers like 'Content-Type' here,
+          // letting the browser set multipart/form-data avoids preflight in many cases.
+        });
 
-    try {
-      const res = await fetch('generate_ai_listing.php', {
-        method: 'POST',
-        body: formData
-      });
-
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error('Server error: ' + res.status + ' — ' + text);
+        status.textContent = `HTTP ${res.status}`;
+        const json = await res.json();
+        if (!res.ok) {
+          result.textContent = JSON.stringify(json, null, 2);
+          return;
+        }
+        result.textContent = JSON.stringify(json, null, 2);
+      } catch (err) {
+        status.textContent = 'Network error';
+        result.textContent = String(err);
       }
-
-      const result = await res.json();
-
-      if (result.error) {
-        results.innerHTML = `<div class="alert error"><strong>Error:</strong> ${result.error_message || result.error}</div>`;
-      } else {
-        results.innerHTML = `
-          <div class="result-grid">
-            <div class="result-image"><img src="${result.image_url}" alt="Uploaded product image"></div>
-            <div class="result-content">
-              <h2>${result.title || ''}</h2>
-              <p class="muted">${result.description || ''}</p>
-              <p class="meta"><strong>Price:</strong> ${result.price ? '₹' + result.price : '—'}</p>
-              <p class="meta"><strong>Warranty:</strong> ${result.warranty || '—'}</p>
-              <p class="meta"><strong>Offer:</strong> ${result.offer || '—'}</p>
-              <p class="small"><a href="${result.image_url}" target="_blank" rel="noopener">Open image</a></p>
-            </div>
-          </div>
-        `;
-      }
-    } catch (err) {
-      results.innerHTML = `<div class="alert error"><strong>Request failed:</strong> ${err.message}</div>`;
-    } finally {
-      form.classList.remove('loading');
-      submitBtn.textContent = 'Generate Listing';
-      submitBtn.disabled = false;
-    }
-  });
+    });
   </script>
 </body>
 </html>
