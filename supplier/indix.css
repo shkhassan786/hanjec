@@ -128,9 +128,21 @@ button[disabled] { background: #9bb091; cursor: not-allowed; opacity: .7; transf
   padding: 20px;
   align-items: center;
 }
-.prompt-AI a {
+.prompt-AI .ai-link {
   text-decoration: none;
-  color: blue;
+  color: rgb(226, 226, 238);
   align-items: center;
   margin-left: 325px;
+  background-color: #2d6b2d;
+  border-radius: 2.5px;
+  padding: 5px;
+  font-weight: 400;
+}
+.prompt-AI .helper{
+  align-items: center;
+  margin-left: 180px;
+}
+.prompt-AI h2{
+  align-items: center;
+  margin-left: 150px;
 }
