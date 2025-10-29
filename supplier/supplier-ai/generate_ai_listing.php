@@ -1,5 +1,4 @@
 <?php
-<?php
 // Dev only: show errors (disable in production)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
