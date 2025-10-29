@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - HANJEC.COM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="nav-logo border">
+                <a href="index.html"><div class="logo"></div></a>
+            </div>
+            <div class="nav-location border">
+                <p class="location-label">Deliver to</p>
+                <div class="add-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p class="location"><b>india</b></p>
+                </div>
+            </div>
+            <div class="nav-search border">
+                <select class="search-select">
+                    <option>ALL</option>
+                </select>
+                <input class="search-input" placeholder="Search Hanjec">
+                <div class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+            <div class="nav-language border">
+                <div id="google_translate_element"></div>
+            </div>
+            <div class="nav-signin border">
+                <a href="signin/sign.html"><span>Hello, sign in</span></a>
+                <a class="nav-second" href="#"> Account & Lists</a>
+            </div>
+            <div class="nav-returns border">
+                <p><span>Returns</span></p>
+                <p class="nav-second">& Orders</p>
+            </div>
+            <div class="nav-cart border" onclick="window.location.href='cart.html'">
+                <i class="fa-solid fa-cart-shopping cart-icon"></i>
+                <span id="cart-count">0</span> cart
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-all border" onclick='toggleMenu()'>
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div id="menu-options" class="menu-options" style="position: relative;">
+               <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="#deals">Deals</a></li>
+                <li><a href="#contact">Contact</a></li>
+               </ul> 
+            </div>
+            <div class="panel-options">
+                <p>Today's Deals</p>
+                <p>Customer Service</p>
+                <p>Gift Cards</p>
+            </div>
+            <div id="supplier" class="supplier border">
+                <a href="supplier/indix.html">Become A Supplier</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="cart-container">
+        <h1>Shopping Cart</h1>
+        
+        <div class="cart-content">
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be loaded here -->
+            </div>
+            
+            <div class="cart-summary">
+                <h2>Order Summary</h2>
+                <div class="summary-row">
+                    <span>Subtotal (<span id="item-count">0</span> items):</span>
+                    <span id="subtotal">₹0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span id="shipping" class="free-shipping">FREE</span>
+                </div>
+                <div class="summary-row">
+                    <span>Discount:</span>
+                    <span id="discount" class="discount-amount">-₹<span id="discount-value">0</span></span>
+                </div>
+                <hr>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="total">₹0</span>
+                </div>
+                
+                <div class="promo-code">
+                    <input type="text" id="promo-input" placeholder="Enter promo code">
+                    <button onclick="applyPromo()">Apply</button>
+                </div>
+                
+                <button class="btn-checkout" onclick="proceedToCheckout()">
+                    <i class="fa-solid fa-lock"></i> Proceed to Checkout
+                </button>
+                
+                <button class="btn-continue" onclick="window.location.href='products.html'">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-top">
+            <a href="#">Back to top</a>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 HANJEC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>

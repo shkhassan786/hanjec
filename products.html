@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - HANJEC.COM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="products.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="nav-logo border">
+                <a href="index.html"><div class="logo"></div></a>
+            </div>
+            <div class="nav-location border">
+                <p class="location-label">Deliver to</p>
+                <div class="add-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p class="location"><b>india</b></p>
+                </div>
+            </div>
+            <div class="nav-search border">
+                <select class="search-select">
+                    <option>ALL</option>
+                </select>
+                <input class="search-input" id="search-input" placeholder="Search Hanjec">
+                <div class="search-icon" onclick="searchProducts()">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+            <div class="nav-language border">
+                <div id="google_translate_element"></div>
+            </div>
+            <div class="nav-signin border">
+                <a href="signin/sign.html"><span>Hello, sign in</span></a>
+                <a class="nav-second" href="#"> Account & Lists</a>
+            </div>
+            <div class="nav-returns border">
+                <p><span>Returns</span></p>
+                <p class="nav-second">& Orders</p>
+            </div>
+            <div class="nav-cart border" onclick="window.location.href='cart.html'">
+                <i class="fa-solid fa-cart-shopping cart-icon"></i>
+                <span id="cart-count">0</span> cart
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-all border" onclick='toggleMenu()'>
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div id="menu-options" class="menu-options" style="position: relative;">
+               <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="#deals">Deals</a></li>
+                <li><a href="#contact">Contact</a></li>
+               </ul> 
+            </div>
+            <div class="panel-options">
+                <p>Today's Deals</p>
+                <p>Customer Service</p>
+                <p>Gift Cards</p>
+                <p>Registry</p>
+                <p>Sell</p>
+            </div>
+            <div id="supplier" class="supplier border">
+                <a href="supplier/indix.html">Become A Supplier</a>
+            </div>
+            <div class="panel-deals border">
+                <p>Deals in Electronics</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="products-container">
+        <h1>Shop All Products</h1>
+        
+        <div class="filter-section">
+            <select id="category-filter" onchange="filterProducts()">
+                <option value="all">All Categories</option>
+                <option value="health">Health & Care</option>
+                <option value="electronics">Electronics</option>
+                <option value="mens">Men's Wear</option>
+                <option value="ladies">Ladies Wear</option>
+                <option value="baby">Baby Wear</option>
+                <option value="kids">Kids Wear</option>
+                <option value="mobile">Mobile & Accessories</option>
+                <option value="toys">Toys</option>
+            </select>
+            
+            <select id="price-filter" onchange="filterProducts()">
+                <option value="all">All Prices</option>
+                <option value="0-500">Under ₹500</option>
+                <option value="500-1000">₹500 - ₹1000</option>
+                <option value="1000-2000">₹1000 - ₹2000</option>
+                <option value="2000+">Above ₹2000</option>
+            </select>
+        </div>
+
+        <div id="products-grid" class="products-grid">
+            <!-- Products will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-top">
+            <a href="#">Back to top</a>
+        </div>
+        <div class="footer-panel">
+            <div class="footer1 footer">
+                <p>Get to Know Us</p>
+                <ul>
+                    <a href="#">About Hanjec</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Press Releases</a>
+                    <a href="#">Hanjec Science</a>
+                </ul>
+            </div>
+            <div class="footer2 footer">
+                <p>Connect with Us</p>
+                <ul>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </ul>
+            </div>
+            <div class="footer3 footer">
+                <p>Make Money with Us</p>
+                <ul>
+                    <a href="#">Sell on Hanjec</a>
+                    <a href="#">Become an Affiliate</a>
+                    <a href="#">Advertise Your Products</a>
+                </ul>
+            </div>
+            <div class="footer4 footer">
+                <p>Let Us Help You</p>
+                <ul>
+                    <a href="#">Your Account</a>
+                    <a href="#">Returns Centre</a>
+                    <a href="#">Help</a>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 HANJEC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="script.js"></script>
+    <script src="products.js"></script>
+</body>
+</html>
