@@ -43,9 +43,9 @@
                 <p><span>Returns</span></p>
                 <p class="nav-second">& Orders</p>
             </div>
-            <div class="nav-cart border">
+            <div class="nav-cart border" onclick="window.location.href='cart.html'">
                 <i class="fa-solid fa-cart-shopping cart-icon"></i>
-                cart
+                <span id="cart-count">0</span> cart
             </div>
         </div>
         <div class="panel">
@@ -56,18 +56,10 @@
             <div id="menu-options" class="menu-options"  style="position: relative;">
                <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Deals</a></li>
-                <li><a href="#">Gift Ideas</a></li>
-                <li><a href="#">New Releases</a></li>
-                <li><a href="#">Help</a></li>
-                <li><a href="#">Feedback</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">More</a></li>
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="products.html">Deals</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About Us</a></li>
                </ul> 
             </div>
 
@@ -91,60 +83,60 @@
           </div>
     <div class="hero-section">
         <div class="hero-msg ">
-            <p>Get 50% off on selected items on your first order | Use code: HANJEC NO.1 , and get free delivery. <a class="border" href="#">click here to shop now</a></p>
+            <p>Get 50% off on selected items on your first order | Use code: HANJEC NO.1 , and get free delivery. <a class="border" href="products.html">click here to shop now</a></p>
         </div>
     </div>
     <div class="shop-section">
-        <div class="box1 box">
+        <div class="box1 box" onclick="window.location.href='products.html?category=health'">
             <div class="box-content">
                 <h2>Health & Care</h2>
                 <div class="box-img" style="background-image: url('img1.jpg');"></div>
                 <p>see more</p>
             </div>
         </div>
-        <div class="box2 box">
+        <div class="box2 box" onclick="window.location.href='products.html?category=electronics'">
             <div class="box-content">
                 <h2>Electronics & Accessories</h2>
             <div class="box-img" style="background-image: url('img2.jpg');"></div>
             <p>see more</p>
             </div>
         </div>
-        <div class="box3 box">
+        <div class="box3 box" onclick="window.location.href='products.html?category=mens'">
             <div class="box-content">
                 <h2>Up to 50% off | Mens wear</h2>
                 <div class="box-img" style="background-image: url('img3.jpg');"></div>
                 <p>see more</p>
             </div>
         </div>
-        <div class="box4 box">
+        <div class="box4 box" onclick="window.location.href='products.html?category=ladies'">
             <div class="box-content">
                 <h2>Up to 60% off | Lady wear</h2>
                 <div class="box-img" style="background-image: url('img4.jpg');"></div>
                 <p>see more</p>
             </div>
         </div>
-        <div class="box5 box">
+        <div class="box5 box" onclick="window.location.href='products.html?category=baby'">
             <div class="box-content">
                 <h2>Up to 35% off | Baby wear</h2>
                 <div class="box-img" style="background-image: url('img5.png');"></div>
                 <p>see more</p>
             </div>
         </div>
-        <div class="box6 box">
+        <div class="box6 box" onclick="window.location.href='products.html?category=kids'">
             <div class="box-content">
                 <h2>Up to 30% off | Kids wear</h2>
                 <div class="box-img" style="background-image: url('img6.png');"></div>
                 <p>see more</p>
             </div>
         </div>
-        <div class="box7 box">
+        <div class="box7 box" onclick="window.location.href='products.html?category=mobile'">
             <div class="box-content">
                 <h2>Mobile & Accessories</h2>
                 <div class="box-img" style="background-image: url('img7.jpg');"></div>
                 <p>see more</p>
             </div>
         </div>
-        <div class="box8 box">
+        <div class="box8 box" onclick="window.location.href='products.html?category=toys'">
             <div class="box-content">
                 <h2>Toys for kids</h2>
                 <div class="box-img" style="background-image: url('img8.jpg');"></div>
@@ -157,6 +149,94 @@
             <h2 class="panel-text">See personalized recommendations</h2>
             <a href="signin/sign.html"><button class="btn border">Sign in</button></a>
             <p class="panel-text2">New customer? <a href="signin/sign.html">Start here.</a></p>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2>Contact Us / Submit Logger</h2>
+            <p class="contact-subtitle">Have questions or feedback? We'd love to hear from you!</p>
+            
+            <form id="contact-form" class="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+91 1234567890">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Customer Support</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="complaint">Complaint</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" rows="6" required placeholder="Write your message here..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit">
+                    <i class="fa-solid fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+            
+            <div id="form-status" class="form-status"></div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="about-section">
+        <div class="about-container">
+            <h2>About HANJEC</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>HANJEC is India's premier e-commerce platform, set to revolutionize online shopping in 2026. We are committed to providing customers with an exceptional shopping experience, offering a vast selection of products across multiple categories including electronics, fashion, health & wellness, and much more.</p>
+                    
+                    <p>Our mission is to make quality products accessible to everyone at competitive prices, backed by excellent customer service and fast, reliable delivery across India.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fa-solid fa-truck-fast"></i>
+                            <h3>Fast Delivery</h3>
+                            <p>Quick and reliable shipping across India</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <h3>Secure Shopping</h3>
+                            <p>100% purchase protection guarantee</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fa-solid fa-headset"></i>
+                            <h3>24/7 Support</h3>
+                            <p>Always here to help you</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fa-solid fa-tags"></i>
+                            <h3>Best Prices</h3>
+                            <p>Competitive pricing and great deals</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
