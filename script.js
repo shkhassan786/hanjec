@@ -7,9 +7,23 @@ function toggleMenu() {
   }
 }
 
-const menuIcon = document.getElementById('menu-icon');
-const menuOptions = document.querySelector('.menu-options');
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById("menu-options");
+  const menuButton = document.querySelector('.panel-all');
+  
+  if (menu && menuButton && !menu.contains(e.target) && !menuButton.contains(e.target)) {
+    menu.style.display = "none";
+  }
+});
 
-menuOptions.addEventListener('click', () => {
-  menuOptions.style.display = (menuOptions.style.display === 'block') ? 'none' : 'block';
+// Smooth scroll for "Back to top" link
+document.addEventListener('DOMContentLoaded', () => {
+  const backToTopLink = document.querySelector('.footer-top a');
+  if (backToTopLink) {
+    backToTopLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 });
