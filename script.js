@@ -7,25 +7,16 @@ function toggleMenu() {
   }
 }
 
-const menuIcon = document.getElementById('menu-icon');
-const menuOptions = document.querySelector('.menu-options');
-
-if (menuOptions) {
-  menuOptions.addEventListener('click', () => {
-    menuOptions.style.display = (menuOptions.style.display === 'block') ? 'none' : 'block';
-  });
-}
-
-// Update cart count on page load
-document.addEventListener('DOMContentLoaded', () => {
-  updateCartCount();
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById("menu-options");
+  const menuButton = document.querySelector('.panel-all');
   
-  // Handle contact form submission
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', handleContactFormSubmit);
+  if (menu && menuButton && !menu.contains(e.target) && !menuButton.contains(e.target)) {
+    menu.style.display = "none";
   }
 });
+
 
 // Update cart count
 function updateCartCount() {
