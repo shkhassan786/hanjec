@@ -42,14 +42,12 @@ body {
     color: #09330a;
     margin-bottom: 10px;
 }
-.project a {
+.projects a {
     color: hsl(263, 100%, 12%);
     margin-bottom: 10px;
     text-decoration: none;
 }
-.box-img{
-    height: 220px;
-    background-size: cover;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+.img-hrs {
+    height: 150px;
+    width: 180px;
 }
